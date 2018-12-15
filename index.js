@@ -1,21 +1,9 @@
+module.exports = Phrase;
+
 // Adds `reverse` to all strings.
 String.prototype.reverse = function() {
   return Array.from(this).reverse().join("");
 }
-
-// Add a `blank` boolean test to all strings.
-String.prototype.blank = function() {
-  if (this.length = 0) {
-    return true;
-  } else if (this.includes(/\s+/)) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-
-
 
 // Defines a phrase object
 function Phrase(content) {
@@ -28,14 +16,16 @@ function Phrase(content) {
 
   // Returns content processed for palindrome testing.
   this.processedContent = function processedContent() {
-    return this.processor(this.content);
+    return this.letters().toLowerCase();
   }
 
-  // Makes the phrase LOUDER.
-//  this.louder = function() {
-//    let processedContent = this.content.toUpperCase();
-//    return processedContent;
-//  }
+  // Returns the letters in the content.
+  // For example:
+  // new Phrase("Hello, world!").letters() === "Helloworld"
+    this.letters = function letters() {
+      return (this.content.match(/[a-z]/gi) || []).join("");
+    }
+
 
   // Returns true for a palindrome, false otherwise.
   this.palindrome = function palindrome() {
